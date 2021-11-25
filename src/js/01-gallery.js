@@ -31,23 +31,26 @@ function createGallerySample(sample) {
 
 function onGallerySampleClick(evt) {
   evt.preventDefault();
+  if (evt.target.nodeName !== "IMG") {
+    return;
+  }
   openModal(evt);
-  closeModal();
+  // closeModal();
 }
 
 function openModal(evt) {
-  instance = basicLightbox.create(`
-  <img src="${evt.target.dataset.source}">
+  const instance = basicLightbox.create(`
+  <img src="${evt.target.dataset.source}" width="800" height="600">
 `);
 
   instance.show();
 }
 
-function closeModal() {
-  document.addEventListener("keydown", (evt) => {
-    if (evt.code !== "Escape") {
-      return;
-    }
-    instance.close();
-  });
-}
+// function closeModal() {
+//   window.addEventListener("keydown", (evt) => {
+//     if (evt.code !== "Escape") {
+//       return;
+//     }
+//     instance.close();
+//   });
+// }
